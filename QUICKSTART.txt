@@ -1,0 +1,13 @@
+最短手順
+========
+
+1. このフォルダをGitHubの新規リポジトリへアップロード
+2. Render等のDocker対応Web Serviceでそのリポジトリをデプロイ
+3. https://<発行されたホスト名>/health を開いて status=ok を確認
+4. MCP URLは https://<発行されたホスト名>/mcp
+5. ChatGPTでカスタムMCPを利用できる場合、Developer modeから上記MCP URLを登録
+
+接続後の最初のテスト例:
+「NDL Digital Collection Researchを使って『福家梅太郎』をOCR本文検索して」
+
+詳しくは README_JA.md を参照してください。
