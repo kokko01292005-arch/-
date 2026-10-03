@@ -9,7 +9,6 @@ import httpx
 import uvicorn
 from mcp.server import MCPServer
 from starlette.responses import JSONResponse
-from starlette.routing import Route
 
 NDL_API_BASE = os.getenv("NDL_API_BASE", "https://lab.ndl.go.jp/dl/api").rstrip("/")
 HTTP_TIMEOUT = float(os.getenv("NDL_HTTP_TIMEOUT", "90"))
@@ -349,6 +348,7 @@ async def get_ndl_ocr_segments(
     }
 
 
+@mcp.custom_route("/health", methods=["GET"])
 async def health(_request):
     return JSONResponse(
         {
@@ -360,6 +360,7 @@ async def health(_request):
     )
 
 
+@mcp.custom_route("/", methods=["GET"])
 async def index(_request):
     return JSONResponse(
         {
@@ -377,10 +378,6 @@ app = mcp.streamable_http_app(
     stateless_http=True,
     json_response=True,
     host="0.0.0.0",
-    custom_starlette_routes=[
-        Route("/", endpoint=index, methods=["GET"]),
-        Route("/health", endpoint=health, methods=["GET"]),
-    ],
 )
 
 
